@@ -9,3 +9,5 @@ set FLASK_ENV=1
 flask run
 
 if there is an app.py, flask will recognize this as the default
+
+render_template function facilitated by Jinja, a full-featured template engine for Python
