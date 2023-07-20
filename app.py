@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, abort, session
+from flask import Flask, render_template, request, redirect, url_for, flash, abort, session, jsonify
 import json
 import os.path
 from werkzeug.utils import secure_filename
@@ -12,7 +12,7 @@ app.secret_key = '5ad867d8sh6ts68578hgss6g67'
 def home():
     return render_template('home.html', codes=session.keys())
 
-# By default, flask enables only GET requests
+# By default, flask enables only GET requests, use the methods parameter to specify which are allowed
 @app.route('/your-url', methods=['GET', 'POST'])
 def your_url():
     if request.method== 'POST':
@@ -39,8 +39,9 @@ def your_url():
         return render_template('your_url.html', code=request.form['code'])
     else:
         return redirect(url_for('home'))
-    
-@app.route('/<string:code>') # look for after the first slash on the website any string and put it in a variable "code"
+
+# look for after the first slash on the website any string and put it in a variable "code"
+@app.route('/<string:code>') 
 def redirect_to_url(code):
     if os.path.exists('urls.json'):
         with open('urls.json') as urls_file:
@@ -52,7 +53,14 @@ def redirect_to_url(code):
                     return redirect(url_for('static', filename='user_files/' + urls[code]['file'])) # look in static
     return abort(404) # import abort for this functionality: use error handler to customize page
 
+# Error handler
 @app.errorhandler(404)
 def page_not_fount(error):
     return render_template('page_not_found.html'), 404
+
+# Returns session keys as a list in json format
+# jsonify can take dictionaries and lists and turn them into the appropriate values
+@app.route('/api')
+def session_api():
+    return jsonify(list(session.keys()))
 
