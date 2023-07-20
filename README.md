@@ -15,3 +15,5 @@ render_template function facilitated by Jinja, a full-featured template engine f
 {{ varname }} in html file allows us to pass variables from jinja/flask to html
 
 In general {{}} syntax is jinja code
+
+session is used to take advantage of cookies
