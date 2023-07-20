@@ -1,9 +1,10 @@
-<h1>URL Shortener</h1>
+{% extends 'base.html' %}
 
-<!-- Jinja Code for flashing messages -->
-{% for message in get_flashed_messages () %}
-<h2>{{ message }}</h2>
-{% endfor %}
+{% block title %}URL Shortener{% endblock %}
+
+{% block main %}
+
+<h1>URL Shortener</h1>
 
 <!-- form action takes you to the your-url page -->
 <!-- Method defaults to GET method, but we can change to POST -->
@@ -38,3 +39,5 @@
     {% endfor %}
 </ul>
 {% endif %}
+
+{% endblock %}
