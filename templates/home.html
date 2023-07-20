@@ -1,10 +1,26 @@
 <h1>URL Shortener</h1>
 
+<!-- Jinja Code for flashing messages -->
+{% for message in get_flashed_messages () %}
+<h2>{{ message }}</h2>
+{% endfor %}
+
 <!-- form action takes you to the your-url page -->
 <!-- Method defaults to GET method, but we can change to POST -->
 <form action="your-url" method="post">
     <label for="url">Website URL</label>
     <input type="url" name="url" value="" required>
+    <br>
+    <label for="text">Shortened URL</label>
+    <input type="text" name="code" value="" required>
+    <br>
+    <input type="submit" value="Shorten">
+</form>
+
+<!-- Form for entering files -->
+<form action="your-url" method="post" enctype="multipart/form-data">
+    <label for="file">File</label>
+    <input type="file" name="file" value="" required>
     <br>
     <label for="text">Shortened URL</label>
     <input type="text" name="code" value="" required>
