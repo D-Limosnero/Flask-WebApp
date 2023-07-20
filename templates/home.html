@@ -1,4 +1,12 @@
-<h1>This is home</h1>
+<h1>URL Shortener</h1>
 
-<!-- {{ varname }} allows us to pass variables from jinja/flask to html -->
-<h2>{{ name }}</h2>
+<!-- form action takes you to the your-url page -->
+<form action="your-url">
+    <label for="url">Website URL</label>
+    <input type="url" name="url" value="" required>
+    <br>
+    <label for="text">Shortened URL</label>
+    <input type="text" name="code" value="" required>
+    <br>
+    <input type="submit" value="Shorten">
+</form>
